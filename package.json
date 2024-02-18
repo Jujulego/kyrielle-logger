@@ -1,0 +1,59 @@
+{
+  "name": "---",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Julien Capellari <julien.capellari@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jujulego/---"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "files": [
+    "./dist"
+  ],
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "default": "./dist/index.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "clean": "shx rm -r dist",
+    "build": "jill group 'build:esm // build:types'",
+    "build:esm": "swc src -d dist --strip-leading-paths",
+    "build:types": "tsc --project tsconfig.build.json",
+    "test": "vitest run --typecheck"
+  },
+  "dependencies": {
+    "@swc/helpers": "^0.5.3"
+  },
+  "devDependencies": {
+    "@jujulego/jill": "2.5.2",
+    "@jujulego/vite-plugin-swc": "1.1.1",
+    "@microsoft/eslint-formatter-sarif": "3.0.0",
+    "@swc/cli": "0.3.9",
+    "@swc/core": "1.4.1",
+    "@types/node": "20.11.19",
+    "@typescript-eslint/eslint-plugin": "7.0.1",
+    "@typescript-eslint/parser": "7.0.1",
+    "@vitest/coverage-v8": "1.3.0",
+    "eslint": "8.56.0",
+    "eslint-plugin-vitest": "0.3.22",
+    "shx": "0.3.4",
+    "typescript": "5.3.3",
+    "vite": "5.1.3",
+    "vite-tsconfig-paths": "4.3.1",
+    "vitest": "1.3.0"
+  },
+  "dependenciesMeta": {
+    "vitest@1.3.0": {
+      "unplugged": true
+    }
+  },
+  "packageManager": "yarn@4.1.0"
+}
