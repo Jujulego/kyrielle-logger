@@ -30,7 +30,9 @@
     "test": "vitest run --typecheck"
   },
   "dependencies": {
-    "@swc/helpers": "^0.5.3"
+    "@jujulego/quick-tag": "^1.0.1",
+    "@swc/helpers": "^0.5.3",
+    "kyrielle": "^1.0.0-alpha.2"
   },
   "devDependencies": {
     "@jujulego/jill": "2.5.2",
