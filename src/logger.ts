@@ -22,7 +22,7 @@ export class Logger<L extends Log = Log> implements Observable<L> {
   constructor(modifier: LM<Log, L>) {
     this._modifier = modifier;
 
-    this[Symbol.observable ?? Symbol.for('observable')] = this._source;
+    this[Symbol.observable ?? '@@observable'] = this._source;
   }
 
   // Methods
