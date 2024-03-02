@@ -1,5 +1,5 @@
 import { qstr, QuickRenderArg } from '@jujulego/quick-tag';
-import { Observable, Source, source$ } from 'kyrielle';
+import { Observable, source$ } from 'kyrielle';
 
 import { Log, LogLevel, LogLevelKey, LogModifier as LM, parseLogLevel } from './defs/index.js';
 
@@ -24,7 +24,7 @@ export class Logger<L extends Log = Log> implements Observable<L> {
   }
 
   // Methods
-  readonly [Symbol.observable]: () => Source<L>;
+  readonly [Symbol.observable]: () => Observable<L>;
   readonly next = (log: Log) => this._source.next(this._modifier(log));
 
   readonly subscribe = this._source.subscribe;
