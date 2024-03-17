@@ -1,8 +1,8 @@
-import { filter$ } from 'kyrielle';
+import { filter$, Subscribable } from 'kyrielle';
 import process from 'node:process';
 
-import { Log, LogLevel } from '../defs/index.js';
 import { hasLabel } from '../attributes/index.js';
+import { Log, LogLevel } from '../defs/index.js';
 
 /**
  * Filters logs by label according to DEBUG environment variable.
@@ -15,11 +15,11 @@ export function envDebugFilter(debug = process.env.DEBUG) {
 
   // Global wildcard
   if (filters.has('*')) {
-    return filter$<Log>(() => true);
+    return filter$<Subscribable<Log>>(() => true);
   }
 
   // Per label
-  return filter$((log: Log) => {
+  return filter$<Subscribable<Log>>((log) => {
     if (log.level > LogLevel.debug || !hasLabel(log)) {
       return true;
     }
