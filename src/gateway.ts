@@ -1,4 +1,4 @@
-import { type Observer } from 'kyrielle';
+import { type Observer, observer$ } from 'kyrielle';
 
 import type { Log } from './defs/index.js';
 
@@ -11,29 +11,57 @@ export class LogGateway<L extends Log = Log> implements Observer<L> {
   private readonly _transports = new Map<string, Observer<L>>();
 
   // Methods
-  connect(key: string, transport: Observer<L>): void {
-    this._transports.set(key, transport);
+  /**
+   * Connects transport to the gateway, associated with given key.
+   */
+  connect(key: string, transport: Partial<Observer<L>>): void {
+    this._transports.set(key, observer$(transport));
   }
 
+  /**
+   * Disconnects transport from the gateway, using key given to connect.
+   * Returns disconnected observer, if any.
+   */
   disconnect(key: string): Observer<L> | undefined {
-    return this._transports.get(key);
+    const obs = this._transports.get(key);
+    this._transports.delete(key);
+
+    return obs;
   }
 
-  next(data: L) {
+  /**
+   * Completes all transports and disconnect them.
+   */
+  destroy() {
+    this.complete();
+  }
+
+  /**
+   * Pass down log to all connected transports
+   */
+  readonly next = (data: L) => {
     for (const transport of this._transports.values()) {
       transport.next(data);
     }
-  }
+  };
 
-  error(err: unknown): void {
+  /**
+   * Pass down error to all connected transports
+   */
+  readonly error = (err: unknown): void => {
     for (const transport of this._transports.values()) {
       transport.error(err);
     }
-  }
+  };
 
-  complete(): void {
+  /**
+   * Completes all transports and disconnect them.
+   */
+  readonly complete = (): void => {
     for (const transport of this._transports.values()) {
       transport.complete();
     }
-  }
+
+    this._transports.clear();
+  };
 }
