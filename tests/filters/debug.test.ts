@@ -4,7 +4,7 @@ import process from 'node:process';
 
 import { LogLabel } from '@/src/attributes/label.js';
 import { Log, LogLevel } from '@/src/defs/index.js';
-import { envDebugFilter } from '@/src/filters/debug.js';
+import { logDebugFilter$ } from '@/src/filters/debug.js';
 
 // Setup
 let logger: Source<Log & Partial<LogLabel>>;
@@ -14,21 +14,21 @@ beforeEach(() => {
 });
 
 // Tests
-describe('envDebugFilter', () => {
+describe('logDebugFilter$', () => {
   describe('empty DEBUG', () => {
     let spy: Mock;
 
     beforeEach(() => {
       spy = vi.fn();
 
-      pipe$(logger, envDebugFilter())
+      pipe$(logger, logDebugFilter$())
         .subscribe(spy);
     });
 
     it('should not filter labelled info logs', () => {
       const spy = vi.fn();
 
-      pipe$(logger, envDebugFilter())
+      pipe$(logger, logDebugFilter$())
         .subscribe(spy);
 
       logger.next({ label: 'test', level: LogLevel.info, message: 'Test' });
@@ -53,14 +53,14 @@ describe('envDebugFilter', () => {
       spy = vi.fn();
 
       process.env.DEBUG = '*';
-      pipe$(logger, envDebugFilter())
+      pipe$(logger, logDebugFilter$())
         .subscribe(spy);
     });
 
     it('should not filter labelled info logs', () => {
       const spy = vi.fn();
 
-      pipe$(logger, envDebugFilter())
+      pipe$(logger, logDebugFilter$())
         .subscribe(spy);
 
       logger.next({ label: 'test', level: LogLevel.info, message: 'Test' });
@@ -85,14 +85,14 @@ describe('envDebugFilter', () => {
       spy = vi.fn();
 
       process.env.DEBUG = 'toto,tata,tutu';
-      pipe$(logger, envDebugFilter())
+      pipe$(logger, logDebugFilter$())
         .subscribe(spy);
     });
 
     it('should not filter labelled info logs', () => {
       const spy = vi.fn();
 
-      pipe$(logger, envDebugFilter())
+      pipe$(logger, logDebugFilter$())
         .subscribe(spy);
 
       logger.next({ label: 'test', level: LogLevel.info, message: 'Test' });

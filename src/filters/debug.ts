@@ -10,7 +10,7 @@ import { Log, LogLevel } from '../defs/index.js';
  * DEBUG should contain a comma separated list of labels. Logs with debug level will be filtered if their labels
  * are not in the DEBUG list. If DEBUG contains a wildcard '*' item, then no logs will be filtered.
  */
-export function envDebugFilter<L extends Log>(debug = process.env.DEBUG) {
+export function logDebugFilter$<L extends Log>(debug = process.env.DEBUG) {
   const filters = new Set(debug?.split(','));
 
   // Global wildcard
