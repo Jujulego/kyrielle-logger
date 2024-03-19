@@ -20,10 +20,10 @@ export function hasDelay<L extends Log>(log: L): log is WithDelay<L> {
  * Injects delay since previous emitted log
  */
 export function logDelay$<L extends Log>() {
-  let previous = performance.now();
+  let previous = Date.now();
 
   return each$<Subscribable<L>, WithDelay<L>>((log) => {
-    const now = performance.now();
+    const now = Date.now();
     const delay = now - previous;
     previous = now;
 
