@@ -542,6 +542,7 @@ __metadata:
     eslint: "npm:8.57.0"
     eslint-plugin-vitest: "npm:0.3.26"
     kyrielle: "npm:^1.0.0-alpha.4"
+    pretty-ms: "npm:^9.0.0"
     shx: "npm:0.3.4"
     typescript: "npm:5.4.2"
     vite: "npm:5.1.6"
