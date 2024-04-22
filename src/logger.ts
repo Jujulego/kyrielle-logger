@@ -28,7 +28,7 @@ export class Logger<L extends Log = Log> implements Observable<L> {
   readonly [Symbol.observable]: () => Observable<L>;
   readonly next = (log: Log) => this._source.next(this._modifier(log));
 
-  readonly subscribe = this._source.subscribe;
+  readonly subscribe = this._source.subscribe.bind(this._source);
 
   /**
    * Creates a child logger. Every log emitted by the children will be emitted by it's parent
@@ -107,7 +107,7 @@ export class Logger<L extends Log = Log> implements Observable<L> {
     this._leveledLog(LogLevel.warning, args);
   }
 
-  warn = this.warning;
+  warn = this.warning.bind(this);
 
   /**
    * Logs a error message
