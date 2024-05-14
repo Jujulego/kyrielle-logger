@@ -1,34 +1,47 @@
+import { q$, qfun, qprop } from '@jujulego/quick-tag';
 import { Observer, observer$ } from 'kyrielle';
 
-import { Log, LogLevel } from '../defs/index.js';
+import { Log, LogFormat, LogLevel } from '../defs/index.js';
+
+/**
+ * Default formatter for Nest Logger transport
+ */
+export const nestLoggerFormat = qfun<Log>`#?:${qprop('label')}(${q$}) ?#${qprop('message')}`;
 
 /**
  * Prints logs to NestJS `LoggerService`.
  */
-export function toNestLogger(loggerService: NestLoggerService): Observer<Log> {
+export function toNestLogger(loggerService: NestLoggerService): Observer<Log>;
+
+/**
+ * Prints logs to NestJS `LoggerService` using given format.
+ */
+export function toNestLogger<L extends Log>(loggerService: NestLoggerService, format: LogFormat<L>): Observer<L>;
+
+export function toNestLogger(loggerService: NestLoggerService, format = nestLoggerFormat): Observer<Log> {
   return observer$<Log>({
     next(log: Log) {
-      const args = [log.error?.stack, log.label];
+      const args = [log.error].filter((item) => !!item);
 
       switch (log.level) {
         case LogLevel.error:
-          loggerService.error(log.message, ...args);
+          loggerService.error(format(log), ...args);
           break;
 
         case LogLevel.warning:
-          loggerService.warn(log.message, ...args);
+          loggerService.warn(format(log), ...args);
           break;
 
         case LogLevel.info:
-          loggerService.log(log.message, ...args);
+          loggerService.log(format(log), ...args);
           break;
 
         case LogLevel.verbose:
-          loggerService.verbose?.(log.message, ...args);
+          loggerService.verbose?.(format(log), ...args);
           break;
 
         case LogLevel.debug:
-          loggerService.debug?.(log.message, ...args);
+          loggerService.debug?.(format(log), ...args);
           break;
       }
     },

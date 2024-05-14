@@ -19,13 +19,13 @@ beforeEach(() => {
 });
 
 // Tests
-describe('toNestjs', () => {
+describe('toNestLogger', () => {
   it('should print error log using console.error', () => {
     const logger = logger$();
     flow$(logger, toNestLogger(loggerService));
     logger.error('life');
 
-    expect(loggerService.error).toHaveBeenCalledWith('life', undefined, undefined);
+    expect(loggerService.error).toHaveBeenCalledWith('life');
   });
 
   it('should print warning log using console.warn', () => {
@@ -33,7 +33,7 @@ describe('toNestjs', () => {
     flow$(logger, toNestLogger(loggerService));
     logger.warning('life');
 
-    expect(loggerService.warn).toHaveBeenCalledWith('life', undefined, undefined);
+    expect(loggerService.warn).toHaveBeenCalledWith('life');
   });
 
   it('should print info log using console.log', () => {
@@ -41,7 +41,7 @@ describe('toNestjs', () => {
     flow$(logger, toNestLogger(loggerService));
     logger.info('life');
 
-    expect(loggerService.log).toHaveBeenCalledWith('life', undefined, undefined);
+    expect(loggerService.log).toHaveBeenCalledWith('life');
   });
 
   it('should print debug log using console.debug', () => {
@@ -49,7 +49,7 @@ describe('toNestjs', () => {
     flow$(logger, toNestLogger(loggerService));
     logger.debug('life');
 
-    expect(loggerService.debug).toHaveBeenCalledWith('life', undefined, undefined);
+    expect(loggerService.debug).toHaveBeenCalledWith('life');
   });
 
   it('should print log in console including label', () => {
@@ -59,7 +59,7 @@ describe('toNestjs', () => {
     flow$(logger, toNestLogger(loggerService));
     logger.info('life');
 
-    expect(loggerService.log).toHaveBeenCalledWith('life', undefined, 'test');
+    expect(loggerService.log).toHaveBeenCalledWith('(test) life');
   });
 
   it('should print log and error in console', () => {
@@ -68,6 +68,6 @@ describe('toNestjs', () => {
     flow$(logger, toNestLogger(loggerService));
     logger.info('life', error);
 
-    expect(loggerService.log).toHaveBeenCalledWith('life', error.stack, undefined);
+    expect(loggerService.log).toHaveBeenCalledWith('life', error);
   });
 });
