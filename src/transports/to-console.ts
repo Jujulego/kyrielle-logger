@@ -50,7 +50,7 @@ export function toConsole(format: LogFormat = consoleFormat): Observer<Log> {
       }
     },
     error(err: unknown) {
-      console.error('ERROR IN LOGGERS', err);
+      console.error('Error while logging', err);
     }
   });
 }
