@@ -1,9 +1,8 @@
 import { q$, qarg, qerror, qfun, qprop } from '@jujulego/quick-tag';
-import { Observer, observer$ } from 'kyrielle';
+import { type Observer, observer$ } from 'kyrielle';
 import os from 'node:os';
-
-import { LogTimestamp } from '../attributes/index.js';
-import { Log, LogFormat } from '../defs/index.js';
+import { type LogTimestamp } from '../attributes/index.js';
+import type { Log, LogFormat } from '../defs/index.js';
 import { qLogLevel } from '../formats/index.js';
 
 // Types

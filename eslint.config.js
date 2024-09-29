@@ -1,8 +1,6 @@
 // @ts-check
 import eslint from '@eslint/js';
 import vitest from '@vitest/eslint-plugin';
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import tsEslint from 'typescript-eslint';
 
 export default tsEslint.config(
@@ -10,15 +8,7 @@ export default tsEslint.config(
     ignores: ['.pnp.*', '.yarn', 'coverage', 'dist']
   },
   eslint.configs.recommended,
-  ...tsEslint.configs.recommendedTypeChecked,
-  {
-    languageOptions: {
-      parserOptions: {
-        project: true,
-        tsconfigRootDir: dirname(fileURLToPath(import.meta.url)),
-      },
-    },
-  },
+  ...tsEslint.configs.recommendedTypeChecked.map((cfg) => ({ ...cfg, files: ['**/*.{ts,tsx}'] })),
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     rules: {
@@ -26,7 +16,30 @@ export default tsEslint.config(
       semi: ['error', 'always'],
       'no-console': ['error', {
         allow: ['warn', 'error'],
-      }]
+      }],
+    }
+  },
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    rules: {
+      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/no-empty-object-type': ['error', {
+        allowInterfaces: 'with-single-extends'
+      }],
+      '@typescript-eslint/no-unused-expressions': ['error', {
+        allowTaggedTemplates: true
+      }],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      'no-console': ['error', {
+        allow: ['warn', 'error'],
+      }],
     }
   },
   {
@@ -41,11 +54,22 @@ export default tsEslint.config(
     },
     rules: {
       ...vitest.configs.recommended.rules,
+    }
+  },
+  {
+    files: ['**/*.test.{ts,tsx}', '**/*.test-d.{ts,tsx}'],
+    rules: {
       '@typescript-eslint/no-unused-vars': ['off'],
+      '@typescript-eslint/prefer-promise-reject-errors': ['off'],
       '@typescript-eslint/require-await': ['off'],
       '@typescript-eslint/unbound-method': ['off'],
+    }
+  },
+  {
+    files: ['**/*.test-d.{ts,tsx}'],
+    rules: {
       'vitest/expect-expect': ['error', {
-        assertFunctionNames: ['expect', 'expectTypeOf', 'assertType']
+        assertFunctionNames: ['expectTypeOf', 'assertType']
       }],
     }
   }

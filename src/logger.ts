@@ -1,7 +1,6 @@
-import { qstr, QuickRenderArg } from '@jujulego/quick-tag';
-import { Observable, source$ } from 'kyrielle';
-
-import { Log, LogLevel, LogLevelKey, LogModifier as LM, parseLogLevel } from './defs/index.js';
+import { qstr, type QuickRenderArg } from '@jujulego/quick-tag';
+import { type Observable, source$ } from 'kyrielle';
+import { type Log, LogLevel, type LogLevelKey, type LogModifier as LM, parseLogLevel } from './defs/index.js';
 
 // Types
 export type LeveledLogArgs = [message: string, error?: Error | undefined];

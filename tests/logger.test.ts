@@ -1,6 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-
-import { Log } from '@/src/defs/log.js';
+import type { Log } from '@/src/defs/log.js';
 import { LogLevel } from '@/src/defs/log-level.js';
 import { logger$ } from '@/src/logger.js';
 

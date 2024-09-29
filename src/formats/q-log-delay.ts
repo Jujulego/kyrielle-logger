@@ -1,7 +1,6 @@
 import { defineQuickFormat } from '@jujulego/quick-tag';
-import prettyMilliseconds, { Options } from 'pretty-ms';
-
-import { WithDelay } from '../attributes/index.js';
+import prettyMilliseconds, { type Options } from 'pretty-ms';
+import type { WithDelay } from '../attributes/index.js';
 
 /**
  * Injects log's delay, formatted using pretty-ms

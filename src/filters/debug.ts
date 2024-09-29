@@ -1,8 +1,7 @@
-import { filter$, Subscribable } from 'kyrielle';
+import { filter$, type Subscribable } from 'kyrielle';
 import process from 'node:process';
-
 import { hasLabel } from '../attributes/index.js';
-import { Log, LogLevel } from '../defs/index.js';
+import { type Log, LogLevel } from '../defs/index.js';
 
 /**
  * Filters logs by label according to DEBUG environment variable.

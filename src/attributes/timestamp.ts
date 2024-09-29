@@ -1,4 +1,4 @@
-import { Log, LogModifier } from '../defs/index.js';
+import type { Log, LogModifier } from '../defs/index.js';
 
 // Types
 export interface LogTimestamp {

@@ -1,6 +1,5 @@
 import { defineQuickFormat } from '@jujulego/quick-tag';
-
-import { Log, LogLevel } from '../defs/index.js';
+import { type Log, LogLevel } from '../defs/index.js';
 
 // Types
 export interface QLogLevelOpts {
