@@ -13,7 +13,7 @@ export type LeveledLogTagArgs = [strings: TemplateStringsArray, ...args: QuickRe
  */
 export class Logger<L extends Log = Log> implements Observable<L> {
   // Attributes
-  readonly __type?: L; // <= allow type inference is kyrielle's pipe$
+  readonly __type?: L; // <= allow type inference in kyrielle's pipe$
   private readonly _source = source$<L>();
   private readonly _modifier: LM<Log, L>;
 
