@@ -1,4 +1,4 @@
-import { Log } from './log.js';
+import type { Log } from './log.js';
 
 // Types
 export type LogModifier<A extends Log = Log, B extends Log = A> = (log: A) => B;

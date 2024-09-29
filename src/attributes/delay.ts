@@ -1,6 +1,5 @@
-import { each$, Subscribable } from 'kyrielle';
-
-import { Log } from '../defs/index.js';
+import { each$, type Subscribable } from 'kyrielle';
+import type { Log } from '../defs/index.js';
 
 // Types
 export interface LogDelay {

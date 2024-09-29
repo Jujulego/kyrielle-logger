@@ -1,7 +1,6 @@
-import { qstr, QuickRenderArg } from '@jujulego/quick-tag';
-import { Observable, source$ } from 'kyrielle';
-
-import { Log, LogLevel, LogLevelKey, LogModifier as LM, parseLogLevel } from './defs/index.js';
+import { qstr, type QuickRenderArg } from '@jujulego/quick-tag';
+import { type Observable, source$ } from 'kyrielle';
+import { type Log, LogLevel, type LogLevelKey, type LogModifier as LM, parseLogLevel } from './defs/index.js';
 
 // Types
 export type LeveledLogArgs = [message: string, error?: Error | undefined];
@@ -13,7 +12,7 @@ export type LeveledLogTagArgs = [strings: TemplateStringsArray, ...args: QuickRe
  */
 export class Logger<L extends Log = Log> implements Observable<L> {
   // Attributes
-  readonly __type?: L; // <= allow type inference is kyrielle's pipe$
+  readonly __type?: L; // <= allow type inference in kyrielle's pipe$
   private readonly _source = source$<L>();
   private readonly _modifier: LM<Log, L>;
 

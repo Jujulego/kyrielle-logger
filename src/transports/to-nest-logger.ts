@@ -1,7 +1,6 @@
 import { q$, qfun, qprop } from '@jujulego/quick-tag';
-import { Observer, observer$ } from 'kyrielle';
-
-import { Log, LogFormat, LogLevel } from '../defs/index.js';
+import { type Observer, observer$ } from 'kyrielle';
+import { type Log, type LogFormat, LogLevel } from '../defs/index.js';
 
 /**
  * Default formatter for Nest Logger transport

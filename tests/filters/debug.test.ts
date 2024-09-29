@@ -1,9 +1,8 @@
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-import { pipe$, Source, source$ } from 'kyrielle';
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
+import { pipe$, type Source, source$ } from 'kyrielle';
 import process from 'node:process';
-
-import { LogLabel } from '@/src/attributes/label.js';
-import { Log, LogLevel } from '@/src/defs/index.js';
+import { type LogLabel } from '@/src/attributes/label.js';
+import { type Log, LogLevel } from '@/src/defs/index.js';
 import { logDebugFilter$ } from '@/src/filters/debug.js';
 
 // Setup

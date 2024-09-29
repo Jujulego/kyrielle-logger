@@ -2,7 +2,7 @@ import { flow$ } from 'kyrielle';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { logger$ } from '@/src/logger.js';
-import { NestLoggerService, toNestLogger } from '@/src/transports/to-nest-logger.js';
+import { type NestLoggerService, toNestLogger } from '@/src/transports/to-nest-logger.js';
 
 // Setup
 const loggerService: NestLoggerService = {
