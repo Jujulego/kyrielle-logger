@@ -5,6 +5,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   cacheDir: '.vite',
   test: {
+    reporters: ['default', 'junit'],
     coverage: {
       include: ['src/**'],
       reporter: ['text', 'lcovonly'],

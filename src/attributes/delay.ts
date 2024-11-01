@@ -1,4 +1,4 @@
-import { each$, type Subscribable } from 'kyrielle';
+import { map$, type Subscribable } from 'kyrielle';
 import type { Log } from '../defs/index.js';
 
 // Types
@@ -21,7 +21,7 @@ export function hasDelay<L extends Log>(log: L): log is WithDelay<L> {
 export function logDelay$<L extends Log>() {
   let previous = Date.now();
 
-  return each$<Subscribable<L>, WithDelay<L>>((log) => {
+  return map$<Subscribable<L>, WithDelay<L>>((log) => {
     const now = Date.now();
     const delay = now - previous;
     previous = now;
