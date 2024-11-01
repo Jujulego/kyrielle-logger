@@ -12,5 +12,8 @@
 .vitest
 coverage
 dist
+eslint-results.sarif
+junit-report.xml
+
 *.log
 *.pid

@@ -9,6 +9,9 @@ export default defineConfig({
       include: ['src/**'],
       reporter: ['text', 'lcovonly'],
     },
+    outputFile: {
+      junit: 'junit-report.xml'
+    },
     typecheck: {
       tsconfig: 'tests/tsconfig.json',
     }
