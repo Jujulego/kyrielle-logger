@@ -46,7 +46,7 @@
     "@types/node": "20.17.10",
     "@typescript-eslint/utils": "8.18.1",
     "@vitest/coverage-v8": "2.1.8",
-    "@vitest/eslint-plugin": "1.1.18",
+    "@vitest/eslint-plugin": "1.1.19",
     "eslint": "9.17.0",
     "globals": "15.14.0",
     "shx": "0.3.4",
