@@ -654,7 +654,7 @@ __metadata:
     "@types/node": "npm:24.10.4"
     "@typescript-eslint/utils": "npm:8.47.0"
     "@vitest/coverage-v8": "npm:3.2.4"
-    "@vitest/eslint-plugin": "npm:1.4.3"
+    "@vitest/eslint-plugin": "npm:1.5.2"
     eslint: "npm:9.39.2"
     globals: "npm:16.5.0"
     kyrielle: "npm:^2.2.1"
@@ -1491,9 +1491,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/eslint-plugin@npm:1.4.3":
-  version: 1.4.3
-  resolution: "@vitest/eslint-plugin@npm:1.4.3"
+"@vitest/eslint-plugin@npm:1.5.2":
+  version: 1.5.2
+  resolution: "@vitest/eslint-plugin@npm:1.5.2"
   dependencies:
     "@typescript-eslint/scope-manager": "npm:^8.46.1"
     "@typescript-eslint/utils": "npm:^8.46.1"
@@ -1506,7 +1506,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 10c0/7fd1843a13c7227d7bb4e1492f4b8c8d8d163c2001cd406e5b6b9d54819b153f8e1270d34c89b3e7bcb4207764823af0879cd7385bfdcd7df6184caf3bdafd05
+  checksum: 10c0/921ad59d42108c570799ffb4d76f37214a854b464c9470cc51922d1fffabbbbffd5c2299507210f922f2152b56b1d40861d371e989577262ca5a7eaf73583cf4
   languageName: node
   linkType: hard
 
